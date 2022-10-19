@@ -14,9 +14,9 @@ app.use(body_parser.urlencoded({ extended: true }));
 const hostname = process.env.HOSTNAME;
 const PORT = process.env.PORT || 3000;
 
-app.get("/", (req, res) => {
-  res.send("working fine..");
-});
+// app.get("/", (req, res) => {
+//   res.send("working fine..");
+// });
 
 //create server
 app.listen(PORT, () => {
