@@ -12,15 +12,15 @@ app.use(body_parser.json());
 app.use(body_parser.urlencoded({ extended: true }));
 
 const hostname = process.env.HOSTNAME;
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3000;
 
 app.get("/", (req, res) => {
   res.send("working fine..");
 });
 
 //create server
-app.listen(PORT, hostname, () => {
-  console.log(`Server running at http://${hostname}:${PORT}`);
+app.listen(PORT, () => {
+  console.log(`Server running at ${PORT}`);
 });
 
 //require database file connect db
