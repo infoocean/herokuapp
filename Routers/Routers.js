@@ -42,6 +42,7 @@ router.get("/", (req, res) => {
     res.json({ error });
   }
 });
+
 router.get("/signup", (req, res) => {
   res.render("pages/index.hbs");
 });
