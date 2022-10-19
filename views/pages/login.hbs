@@ -1,0 +1,55 @@
+{{>header}}
+<div class="container-fluid register mt-0">
+  <div class="row">
+    <div class="col-md-3 register-left">
+      <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
+      <h3>Welcome</h3>
+      <p>You are 30 seconds away from earning your own money!</p>
+       <a href="/signup" class="btn btn-info">Sign Up</a><br />
+    </div>
+    <div class="col-md-9 register-right">
+      <div class="tab-content" id="myTabContent">
+        <div
+          class="tab-pane fade show active"
+          id="login"
+          role="tabpanel"
+          aria-labelledby="login-tab"
+        >
+          <h3 class="register-heading">Login</h3>
+          <div class="row register-form">
+            <div class="col-md-12 profile_card">
+              <form action="/login" method="post" class="form-inline">
+                <div class="form-group pl-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Email"
+                    value=""
+                    name="email"
+                  />
+                </div>
+                <div class="form-group pl-3">
+                  <input
+                    type="password"
+                    class="form-control"
+                    placeholder="Password *"
+                    value=""
+                    name="password"
+                  />
+                </div>
+                <div class="float-right  pl-3">
+                  <input
+                    type="submit"
+                    class="btn btn-primary"
+                    value="Login"
+                  />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{>footer}}
