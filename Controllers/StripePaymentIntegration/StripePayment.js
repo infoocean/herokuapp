@@ -99,7 +99,7 @@ const StripePaymentWithNode = async (req, res) => {
       ],
       mode: "payment",
       success_url:
-        "http://localhost:4000/success?session_id={CHECKOUT_SESSION_ID}",
+        "https://mynodeherokuappproject.herokuapp.com/success?session_id={CHECKOUT_SESSION_ID}",
       cancel_url: "https://example.com/cancel",
     });
     //console.log(session);
