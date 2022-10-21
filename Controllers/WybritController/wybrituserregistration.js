@@ -34,7 +34,7 @@ const WybritUserLogin = async (req, res) => {
     });
     //console.log(isuser);
     if (isuser !== null) {
-      res.status(200).send({ message: "login successfully", userid: isuser });
+      res.status(200).send({ message: "login successfully", userinfo: isuser });
     } else {
       res.send({ message: "please enter valid email or password" });
     }
