@@ -33,7 +33,11 @@ const WybritUserLogin = async (req, res) => {
       password: password,
     });
     //console.log(isuser);
-    res.status(200).send({ message: "login successfully", userinfo: isuser });
+    if (isuser !== null) {
+      res.status(200).send({ message: "login successfully", userinfo: isuser });
+    } else {
+      res.status(400).send({ message: "please enter valid email or password" });
+    }
   } catch (error) {
     res.status(400).send({ message: error.message });
   }
