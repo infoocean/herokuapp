@@ -23,6 +23,11 @@ const {
   PaypalPaymentSuccess,
 } = require("../Controllers/PaypalPayment/PaypalPaymentIntegration");
 
+const {
+  WybritUserRegistration,
+  WybritUserLogin,
+} = require("../Controllers/WybritController/wybrituserregistration");
+
 //routes
 
 // const static_path = path.join(__dirname, "../Public");
@@ -86,5 +91,9 @@ router.get("/success", PaypalPaymentSuccess);
 router.get("/paypal-cancel", (req, res) => {
   res.send("cancelled");
 });
+
+//wybrit app api login regfistration
+router.post("/wybrituserregistration", WybritUserRegistration);
+router.post("/wybrituserlogin", WybritUserLogin);
 
 module.exports = router;
