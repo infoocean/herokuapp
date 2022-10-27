@@ -12,6 +12,7 @@ const {
 
 const {
   StripePaymentController,
+  StripePaymentGatsbyController,
   StripePaymentWithNode,
   GetStripeNodePaymentInfo,
   StripeCuntomers,
@@ -78,6 +79,12 @@ router.get("/success", GetStripeNodePaymentInfo);
 
 //stripe payment gateway for reactjs api
 router.post("/stripe-payment-integration", StripePaymentController);
+
+//stripe payment gateway for gatsbyjs api
+router.post(
+  "/stripe-payment-integration-gatsby",
+  StripePaymentGatsbyController
+);
 
 //stripe retreive all customers
 router.get("/stripeallcuntomers", StripeCuntomers);

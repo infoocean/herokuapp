@@ -28,7 +28,7 @@ const StripePaymentController = async (req, res) => {
       description: "Pay AmmountI With catd",
       payment_method_types: ["card"],
       amount: items.ammount,
-      currency: "usd",
+      currency: "inr",
       shipping: {
         name: items.address.shipping_name,
         address: {
@@ -49,6 +49,73 @@ const StripePaymentController = async (req, res) => {
       }
     );
     console.log(conformpayment);
+    //return false;
+    if (conformpayment.status === "succeeded") {
+      res.status(200).send(conformpayment);
+    } else {
+      res.status(500).send("payment failed");
+    }
+  } catch (error) {
+    res.status(500).send({ message: error.message });
+  }
+};
+
+//stripe payment controller for Gatsbyjs
+const StripePaymentGatsbyController = async (req, res) => {
+  //console.log(req.body);
+  const items = req.body;
+  //console.log(items);
+  //return false;
+  try {
+    // stripe create customer
+    const customers = await stripe.customers.create({
+      name: items.formdata.name,
+      email: items.email,
+      address: {
+        line1:
+          items.formdata.city +
+          "," +
+          items.formdata.state +
+          "," +
+          items.formdata.country,
+        postal_code: items.formdata.zipcode,
+        city: items.formdata.city,
+        state: items.formdata.state,
+        country: items.formdata.country,
+      },
+    });
+    //console.log(customers);
+    //create payment intent
+    const paymentIntent = await stripe.paymentIntents.create({
+      description: "Pay AmmountI With catd",
+      payment_method_types: ["card"],
+      amount: items.ammount * 100,
+      currency: "INR",
+      shipping: {
+        name: items.formdata.name,
+        address: {
+          line1:
+            items.formdata.city +
+            "," +
+            items.formdata.state +
+            "," +
+            items.formdata.country,
+          postal_code: items.formdata.zipcode,
+          city: items.formdata.city,
+          state: items.formdata.state,
+          country: items.formdata.country,
+        },
+      },
+    });
+    //console.log(paymentIntent);
+    //confirm payment intent
+    const conformpayment = await stripe.paymentIntents.confirm(
+      paymentIntent.id,
+      {
+        payment_method: "pm_card_visa",
+      }
+    );
+    //console.log(conformpayment);
     //return false;
     if (conformpayment.status === "succeeded") {
       res.status(200).send(conformpayment);
@@ -137,4 +204,5 @@ module.exports = {
   GetStripeNodePaymentInfo,
   StripeCuntomers,
   GetCustomerById,
+  StripePaymentGatsbyController,
 };
