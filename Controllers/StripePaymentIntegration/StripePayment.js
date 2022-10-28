@@ -27,7 +27,7 @@ const StripePaymentController = async (req, res) => {
     const paymentIntent = await stripe.paymentIntents.create({
       description: "Pay AmmountI With catd",
       payment_method_types: ["card"],
-      amount: items.ammount,
+      amount: items.ammount * 100,
       currency: "inr",
       shipping: {
         name: items.address.shipping_name,
