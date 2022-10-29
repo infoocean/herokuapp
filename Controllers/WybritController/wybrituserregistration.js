@@ -1,5 +1,6 @@
 //require models
 const userregistration = require("../../Models/Wybritappusers/UserRegistration");
+const WybritOrders = require("../../Models/Wybritappusers/Orders");
 // user registration controller
 const WybritUserRegistration = async (req, res) => {
   const data = new userregistration({
@@ -36,16 +37,48 @@ const WybritUserLogin = async (req, res) => {
     if (isuser !== null) {
       res.status(200).send({ message: "login successfully", userinfo: isuser });
     } else {
-      res
-        .status(400)
-        .send({
-          message:
-            "email or password does not exists enter Valid Email or password",
-        });
+      res.status(400).send({
+        message:
+          "email or password does not exists enter Valid Email or password",
+      });
     }
   } catch (error) {
     res.status(400).send({ message: error.message });
   }
 };
 
-module.exports = { WybritUserRegistration, WybritUserLogin };
+//orders comntroller
+const Wybritorders = async (req, res) => {
+  try {
+    const data = new WybritOrders({
+      Userid: req.body.Userid,
+      Orderid: req.body.Orderid,
+    });
+    const savedata = await data.save();
+    res
+      .status(201)
+      .send({ message: "order save successfully", data: savedata });
+  } catch (error) {
+    res.status(400).send({ message: error.message });
+  }
+};
+
+//get order by userid
+const WybritGetorders = async (req, res) => {
+  const Userid = req.body.Userid;
+  try {
+    const orders = await WybritOrders.find({
+      Userid: Userid,
+    });
+    res.status(200).send({ data: orders });
+  } catch (error) {
+    res.status(400).send({ message: error.message });
+  }
+};
+
+module.exports = {
+  WybritUserRegistration,
+  WybritUserLogin,
+  Wybritorders,
+  WybritGetorders,
+};

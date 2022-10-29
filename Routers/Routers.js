@@ -27,6 +27,8 @@ const {
 const {
   WybritUserRegistration,
   WybritUserLogin,
+  Wybritorders,
+  WybritGetorders,
 } = require("../Controllers/WybritController/wybrituserregistration");
 
 //routes
@@ -102,5 +104,7 @@ router.get("/paypal-cancel", (req, res) => {
 //wybrit app api login regfistration
 router.post("/wybrituserregistration", WybritUserRegistration);
 router.post("/wybrituserlogin", WybritUserLogin);
+router.post("/wybritorders", Wybritorders);
+router.post("/wybritgetorders", WybritGetorders);
 
 module.exports = router;
