@@ -16,6 +16,12 @@ const WybritUserRegistration = async (req, res) => {
     city: req.body.city,
   });
   try {
+    const email_check = await userregistration.findOne({
+      email: req.body.email,
+    });
+
+    console.log(email_check);
+
     const savedata = await data.save();
     res.status(201).send({ message: "data save successfully", savedata });
   } catch (error) {
