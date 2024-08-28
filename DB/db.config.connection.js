@@ -17,6 +17,5 @@ mongoose
     console.log("db connection successfull");
   })
   .catch((err) => {
-    //console.log("db connection unsuccessfull", err);
-    console.log("db connection unsuccessfull", err.message);
+    console.log("db connection unsuccessfull", err , err.message);
   });

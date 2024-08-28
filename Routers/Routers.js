@@ -31,10 +31,10 @@ const {
   WybritGetorders,
 } = require("../Controllers/WybritController/wybrituserregistration");
 
-//routes
+//routes 
 
-// const static_path = path.join(__dirname, "../Public");
-// app.use(express.static(static_path));
+const static_path = path.join(__dirname, "../Public");
+app.use(express.static(static_path));
 
 const views_path = path.join(__dirname, "../views/pages");
 const partial_path = path.join(__dirname, "../views/templates");
